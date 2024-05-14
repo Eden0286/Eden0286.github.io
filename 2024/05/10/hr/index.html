@@ -39,6 +39,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -169,12 +172,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <img src="/2024/05/10/hr/2.jpg" class title="This is an test image">
-<span id="more"></span>
-<img src="/2024/05/10/hr/3.jpg" class title="This is an test image">
-<h2 id="讲述了在一个魔法与现代科技共存的世界，主人公苏菲与哈尔相遇，相识，分离，最后团聚相爱的故事。故事的发展采用多线推进的形式：“苏菲的年龄”“战争的推进历程”“哈尔的形态变化”。"><a href="#讲述了在一个魔法与现代科技共存的世界，主人公苏菲与哈尔相遇，相识，分离，最后团聚相爱的故事。故事的发展采用多线推进的形式：“苏菲的年龄”“战争的推进历程”“哈尔的形态变化”。" class="headerlink" title="讲述了在一个魔法与现代科技共存的世界，主人公苏菲与哈尔相遇，相识，分离，最后团聚相爱的故事。故事的发展采用多线推进的形式：“苏菲的年龄”“战争的推进历程”“哈尔的形态变化”。"></a>讲述了在一个魔法与现代科技共存的世界，主人公苏菲与哈尔相遇，相识，分离，最后团聚相爱的故事。故事的发展采用多线推进的形式：“苏菲的年龄”“战争的推进历程”“哈尔的形态变化”。</h2><h2 id="经典的反战主题，同时添加了两位主人公追寻自我的历程。"><a href="#经典的反战主题，同时添加了两位主人公追寻自我的历程。" class="headerlink" title="经典的反战主题，同时添加了两位主人公追寻自我的历程。"></a>经典的反战主题，同时添加了两位主人公追寻自我的历程。</h2><h2 id="观感中等，满分10，评分7。"><a href="#观感中等，满分10，评分7。" class="headerlink" title="观感中等，满分10，评分7。"></a>观感中等，满分10，评分7。</h2>
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="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"
+        data-shasum="ec768b8e8427fbcdb3fc4f1635a66cbfc4438651555d0fe00025af8aaab788bf"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
     
     
     
